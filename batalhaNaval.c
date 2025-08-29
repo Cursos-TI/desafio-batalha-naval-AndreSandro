@@ -1,53 +1,83 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#define LINHAS  10
+#define COLUNAS 10       // Define 3 contastantes, que definem o tamanho dos arrays.
+#define NAVIOS  3
 
-int main() {
-    // Nível Novato - Posicionamento dos Navios
-    // Sugestão: Declare uma matriz bidimensional para representar o tabuleiro (Ex: int tabuleiro[5][5];).
-    // Sugestão: Posicione dois navios no tabuleiro, um verticalmente e outro horizontalmente.
-    // Sugestão: Utilize `printf` para exibir as coordenadas de cada parte dos navios.
+int main(){
 
 
-int tabuleiro[10][10] = {
+   int tabuleiro[LINHAS][COLUNAS];                 // Declara o array 10 x 10 mas não o inicia.
 
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},        // Define uma matriz de 100 elementos(10 x 10), e atribui 0 a cada elemento.
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,},
-    {0,0,0,0,0,0,0,0,0,0,}
+  
 
-   };
-
-   int navio_1[3] = {33,34,35}; 
-   int navio_2[3] = {74,64,54};   // Define 2 arrays com 3 elementos cada, reprensentado as coordenadas no tabuleiro.
-
-   
-  for (int i = 0; i < 10; i++)    // Loop externo itera sobre as colunas do tabuleiro
-  {
-
-   for (int j = 0; j < 10; j++)   // Loop interno itera sobre cada elemento em linha   
+   for (int i = 0; i < LINHAS; i++)
    {
-        
-      printf("%d ",tabuleiro[i][j]); // Imprime cada elemento.
+      for (int j = 0; j < COLUNAS; j++)           // Laço externo itera as linhas do tabuleiro, laço interno itera as colunas passando por cada elemento.
+      {
+         
+         tabuleiro[i][j] = 0;                    // A cada iteração é adicionado 0 em cada elemento.
+                 
+      }
+   }
+
+
+   for (int i = 0; i < 3; i++)
+   {
+      if (tabuleiro[0][i] == 0)
+      {                                          // Adiciona navio 1 horizontal ao tabuleiro.
+         tabuleiro[0][i] = NAVIOS;
+      }
       
    }
-    tabuleiro[3][2] = 3;
-    tabuleiro[3][3] = 3;
-    tabuleiro[3][4] = 3;             // Atribui ao tabuleiro cada valor correspondendo as coordenadas.
-    tabuleiro[7][2] = 3;
-    tabuleiro[6][2] = 3;
-    tabuleiro[5][2] = 3;
 
-    printf("\n");                   // Quebra uma linha para cada iteração externa, desenhando o quadrado 10 x 10 no console
-  }
+
+   for (int i = 5; i < 8; i++)
+   {   
+
+      if (tabuleiro[i][2] == 0)
+      {                                         // Adiciona navio 2 vertical ao tabuleiro.
+         tabuleiro[i][2] = NAVIOS;
+      }
+
+   }
+                                              
+    
+   
+   for (int i = 0; i < 3; i++)
+   {   
+
+      if (tabuleiro[1 + i][4 + i] == 0)
+      {                                         // Adiciona navio 3 diagonal a esquerda ao tabuleiro.
+         tabuleiro[1 + i][4 + i] = NAVIOS;
+      }
+
+   }
+   
+
+   for (int i = 0; i < 3; i++)
+   {   
+
+      if (tabuleiro[6 + i][6 - i] == 0)
+      {                                         // Adiciona navio 4 diagonal a direita ao tabuleiro.
+         tabuleiro[6 + i][6 - i] = NAVIOS;
+      }
+
+   }
+
+    
+   for (int i = 0; i < LINHAS; i++)
+   {
+      for (int j = 0; j < COLUNAS; j++)
+      {                                         // itera sobre cada elemento da matriz para exibi-los
+         printf("%d  ", tabuleiro[i][j]);
+      }
+      printf("\n");                            // Faz uma quebra a cada 10 elementos, formando o 10 x 10.
+   }
+   
+
+    return 0;
+}
 
     // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
     // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
